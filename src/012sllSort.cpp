@@ -1,5 +1,5 @@
 /*
-OVERVIEW:  Given a single linked list of 0s 1s and 2s ,Sort the SLL such that zeroes 
+OVERVIEW:  Given a single linked list of 0s 1s and 2s ,Sort the SLL such that zeroes
 will be followed by ones and then twos.
 
 
@@ -14,7 +14,6 @@ NOTES: Only 0,1,2, will be in sll nodes
 */
 
 #include <stdio.h>
-#include <malloc.h>
 
 struct node {
 	int data;
@@ -22,5 +21,18 @@ struct node {
 };
 
 void sll_012_sort(struct node *head){
-	
+	struct node* curr = head;
+	int freqCount[3] = { 0 };
+
+	while (curr != NULL){
+		freqCount[curr->data] += 1;
+		curr = curr->next;
+	}
+	curr = head;
+	for (int i = 0; i < 3; i++) {
+		for (int j = freqCount[i]; j>0; j--){
+			curr->data = i;
+			curr = curr->next;
+		}
+	}
 }
